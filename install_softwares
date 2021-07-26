@@ -37,6 +37,8 @@ echo ----------Installation de Audacity----------
 	sudo pacman -S audacity
 echo ----------Installation de transmission----------
 	sudo pacman -S transmission-gtk
+echo ----------	Installation de minecraft----------
+	pamac build minecraft-launcher
 end=`date +%s.%N`
 runtime=$(echo "$end - $start" | bc -l )
 echo echo "$runtime/60" | bc -l "minutes to download these softwares."\n"this computer will reboot in 30 seconds" ; sleep 30 ;reboot
