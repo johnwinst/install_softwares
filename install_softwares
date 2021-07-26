@@ -1,7 +1,7 @@
 #!/bin/bash
 start=`date +%s.%N`
 echo ----------Mise à jour des paquets avec rafraîchissement des dépôts----------
-	sudo pacman -Syu
+	sudo pamac update --force-refresh
 echo ----------Installation de Keepassxc----------
 	sudo pacman -S keepassxc
 echo ----------Installation de Brave----------
