@@ -1,0 +1,42 @@
+#!/bin/bash
+start=`date +%s.%N`
+echo ----------Mise à jour des paquets avec rafraîchissement des dépôts----------
+	sudo pacman -Syu
+echo ----------Installation de Keepassxc----------
+	sudo pacman -S keepassxc
+echo ----------Installation de Brave----------
+	sudo pacman -S brave
+echo ----------Installation de Rasberry pi imager----------
+	sudo pacman -S rpi-imager
+echo ----------Installation de Steam----------
+	sudo pacman -S steam
+echo ----------Installation de Wine----------
+	sudo pacman -S wine
+	sudo pacman -S winetricks
+echo ----------Installation de minder----------
+	sudo pacman -S minder
+echo ----------Installation un émulateur de WII----------
+	sudo pacman -S dolphin-emu
+echo ----------Installation des services impression----------
+	sudo pacman -S system-config-printer
+	sudo pacman -S manjaro-printer
+	sudo systemctl enable --now cups.service
+	sudo systemctl enable --now cups.socket
+	sudo systemctl enable --now cups.path
+echo ----------Installation de cura----------
+	sudo pacman -S cura
+echo ----------Installation de libre-office----------
+	sudo pacman -S libreoffice-fresh
+echo ----------Installation de Sauvegarde Dup----------
+	sudo pacman -S deja-dup
+echo ----------Installation du partage de fichiers----------
+	sudo pacman -S nautilus-share
+echo ----------Installation de VLC----------
+	sudo pacman -S vlc
+echo ----------Installation de Audacity----------
+	sudo pacman -S audacity
+echo ----------Installation de transmission----------
+	sudo pacman -S transmission-gtk
+end=`date +%s.%N`
+runtime=$(echo "$end - $start" | bc -l )
+echo echo "$runtime/60" | bc -l "minutes to download these softwares."\n"this computer will reboot in 30 seconds" ; sleep 30 ;reboot
