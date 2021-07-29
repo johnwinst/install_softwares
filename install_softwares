@@ -1,44 +1,16 @@
-#!/bin/bash
-start=`date +%s.%N`
-echo ----------Mise à jour des paquets avec rafraîchissement des dépôts----------
-	sudo pamac update --force-refresh
-echo ----------Installation de Keepassxc----------
-	sudo pacman -S keepassxc
-echo ----------Installation de Brave----------
-	sudo pacman -S brave
-echo ----------Installation de Rasberry pi imager----------
-	sudo pacman -S rpi-imager
-echo ----------Installation de Steam----------
-	sudo pacman -S steam
-echo ----------Installation de Wine----------
-	sudo pacman -S wine
-	sudo pacman -S winetricks
-echo ----------Installation de minder----------
-	sudo pacman -S minder
-echo ----------Installation un émulateur de WII----------
-	sudo pacman -S dolphin-emu
-echo ----------Installation des services impression----------
-	sudo pacman -S system-config-printer
-	sudo pacman -S manjaro-printer
-	sudo systemctl enable --now cups.service
-	sudo systemctl enable --now cups.socket
-	sudo systemctl enable --now cups.path
-echo ----------Installation de cura----------
-	sudo pacman -S cura
-echo ----------Installation de libre-office----------
-	sudo pacman -S libreoffice-fresh
-echo ----------Installation de Sauvegarde Dup----------
-	sudo pacman -S deja-dup
-echo ----------Installation du partage de fichiers----------
-	sudo pacman -S nautilus-share
-echo ----------Installation de VLC----------
-	sudo pacman -S vlc
-echo ----------Installation de Audacity----------
-	sudo pacman -S audacity
-echo ----------Installation de transmission----------
-	sudo pacman -S transmission-gtk
-echo ----------	Installation de minecraft----------
-	pamac build minecraft-launcher
-end=`date +%s.%N`
-runtime=$(echo "$end - $start" | bc -l )
-echo echo "$runtime/60" | bc -l "minutes to download these softwares."\n"this computer will reboot in 30 seconds" ; sleep 30 ;reboot
+#!/bin/bash	 
+#start=`date +%s.%N`
+list_package=(
+	"keepassxc" "brave-beta-browser" "rpi-image" "steam" "wine" "winetricks" "minder" "dolphin-emu" "system-config-printer"
+	"manjaro-printer" "enable --now cups.service" "enable --now cups.socket" "enable --now cups.path" "cura" 
+	"libreoffice-fresh" "deja-dup" "vlc" "audacity" "transmission-gtk" "minecraft-launcher"
+	)
+
+len=${#package_list[@]}
+
+for (( i=0; i<$len; i++ )); do 
+	sudo pacman -S "${package_list[$i]}" 
+done
+#end=`date +%s.%N`
+#runtime=$(echo "$end - $start" | bc -l )
+#echo $(date +"%D") : this script taken "$runtime/60" seconds to install these packages. >> install_softwares_log ; sleep 5 #; reboot
