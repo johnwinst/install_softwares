@@ -1,16 +1,41 @@
 #!/bin/bash	 
-#start=`date +%s.%N`
-list_package=(
-	"keepassxc" "brave-beta-browser" "rpi-image" "steam" "wine" "winetricks" "minder" "dolphin-emu" "system-config-printer"
-	"manjaro-printer" "enable --now cups.service" "enable --now cups.socket" "enable --now cups.path" "cura" 
-	"libreoffice-fresh" "deja-dup" "vlc" "audacity" "transmission-gtk" "minecraft-launcher"
-	)
+start_timer(){
+	start=`date +%s.%N`
+}
 
-len=${#package_list[@]}
+list_package(){
+	list_package=(
+		"keepassxc" "brave-beta-browser" "rpi-image" "steam" "wine" "winetricks" "minder" "dolphin-emu" "system-config-printer"
+		"manjaro-printer" "enable --now cups.service" "enable --now cups.socket" "enable --now cups.path" "cura" 
+		"libreoffice-fresh" "deja-dup" "vlc" "audacity" "transmission-gtk" "minecraft-launcher"
+		)
+}
 
-for (( i=0; i<$len; i++ )); do 
-	sudo pacman -S "${package_list[$i]}" 
-done
-#end=`date +%s.%N`
-#runtime=$(echo "$end - $start" | bc -l )
-#echo $(date +"%D") : this script taken "$runtime/60" seconds to install these packages. >> install_softwares_log ; sleep 5 #; reboot
+count_package(){
+	len=${#list_package[@]}
+}
+
+install_package(){
+	for (( i=0; i<$len; i++ )); do 
+		sudo pacman -S "${list_package[$i]}" 
+	done
+}
+
+end_timer(){
+	end=`date +%s.%N`
+}
+
+get_info(){
+	runtime=$(echo "$end - $start" | bc -l )
+	echo $(date +%D) : this script taken $runtime seconds to install these packages. >> install_softwares_log; sleep 5; reboot
+}
+
+main(){
+start_timer
+list_package
+count_package
+install_package
+end_timer
+get_info
+}
+main
