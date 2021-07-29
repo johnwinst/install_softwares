@@ -15,7 +15,6 @@ count_package(){
 install_package(){
 	for (( i=0; i<$number_of_files; i++ )); do 
 		sudo pacman -S "${list_package[$i]}" 
-		echo $i
 	done
 }
 
