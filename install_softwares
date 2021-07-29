@@ -4,20 +4,18 @@ start_timer(){
 }
 
 list_package(){
-	list_package=(
-		"keepassxc" "brave-beta-browser" "rpi-image" "steam" "wine" "winetricks" "minder" "dolphin-emu" "system-config-printer"
-		"manjaro-printer" "enable --now cups.service" "enable --now cups.socket" "enable --now cups.path" "cura" 
-		"libreoffice-fresh" "deja-dup" "vlc" "audacity" "transmission-gtk" "minecraft-launcher"
-		)
+	read_package=$(cat package_listed)
+	list_package=( $read_package )
 }
 
 count_package(){
-	len=${#list_package[@]}
+	number_of_files=${#list_package[@]}
 }
 
 install_package(){
-	for (( i=0; i<$len; i++ )); do 
+	for (( i=0; i<$number_of_files; i++ )); do 
 		sudo pacman -S "${list_package[$i]}" 
+		echo $i
 	done
 }
 
@@ -27,15 +25,15 @@ end_timer(){
 
 get_info(){
 	runtime=$(echo "$end - $start" | bc -l )
-	echo $(date +%D) : this script taken $runtime seconds to install these packages. >> install_softwares_log; sleep 5; reboot
+	echo $(date +%D) : this script took $runtime seconds to install these $number_of_files packages. >> install_softwares_log; sleep 5 #; reboot
 }
 
 main(){
-start_timer
-list_package
-count_package
-install_package
-end_timer
-get_info
+	start_timer
+	list_package
+	count_package
+	install_package
+	end_timer
+	get_info
 }
 main
