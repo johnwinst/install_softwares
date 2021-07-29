@@ -1,0 +1,20 @@
+keepassxc 
+brave-beta-browser
+rpi-imager 
+steam
+wine
+winetricks
+minder
+dolphin-emu
+system-config-printer
+manjaro-printer
+enable --now cups.service
+enable --now cups.socket
+enable --now cups.path
+cura 
+libreoffice-fresh
+deja-dup
+vlc
+audacity
+transmission-gtk
+minecraft-launcher
